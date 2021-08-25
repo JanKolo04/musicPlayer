@@ -1,0 +1,3 @@
+1.jeden folder gdzie bedzie mozna dodawac piosenki (moze kiedys wiecej)
+2.zmiana przycisku pauza na start
+
