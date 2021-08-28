@@ -33,13 +33,11 @@ def toggleText():
 	else:
 		Pause['text'] = 'Pause'
 
-		
 
 playing_state = False 
 def pause():
 	global playing_state
 
-	Pause = Button(root, command = toggleText)
 	if not playing_state:
 		mixer.music.pause()
 		playing_state = True
@@ -48,7 +46,7 @@ def pause():
 		playing_state = False
 
 
-Pause = Button(root, text="Pause", command=pause)
+Pause = Button(root, text="Pause", command=lambda:[toggleText(), pause()])
 Pause.pack()
 
 
