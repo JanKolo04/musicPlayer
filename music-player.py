@@ -1,9 +1,12 @@
 from tkinter import *
 from tkinter import filedialog
 from pygame import mixer
+from PIL import ImageTk, Image
+from pathlib import Path
 
 
 root = Tk()
+root.title("Music Player")
 root.geometry('320x400')
 root.resizable(0,0)
 
@@ -11,6 +14,12 @@ root.resizable(0,0)
 def load():
 	global plik
 	plik = filedialog.askopenfilename()
+
+	path = Path(plik)
+	song_name = path.name
+	label = Label(root, text=song_name)
+	label.pack()
+
 
 Load = Button(root, text="Load", command=load)
 Load.pack()
@@ -48,6 +57,18 @@ def pause():
 
 Pause = Button(root, text="Pause", command=lambda:[toggleText(), pause()])
 Pause.pack()
+
+
+#image
+my_pic = Image.open("images/nutka.jpeg")
+
+resized = my_pic.resize((100, 100), Image.ANTIALIAS)
+
+new_pic = ImageTk.PhotoImage(resized)
+
+my_label = Label(root, image=new_pic)
+my_label.pack(pady=90)
+
 
 
 #button places
