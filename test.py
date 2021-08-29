@@ -1,17 +1,16 @@
 from tkinter import *
-
+from PIL import ImageTk, Image
 
 root = Tk()
 root.geometry('320x400')
-root.resizable(0,0)
 
-def toggleText():
-	if (Pause['text'] == 'Pause'):
-		Pause['text'] = 'Unpause'
-	else:
-		Pause['text'] = 'Pause'
+my_pic = Image.open("images/nutka.jpeg")
 
-Pause = Button(root, text="Pause", command=toggleText)
-Pause.pack()
+resized = my_pic.resize((100, 100), Image.ANTIALIAS)
+
+new_pic = ImageTk.PhotoImage(resized)
+
+my_label = Label(root, image=new_pic)
+my_label.pack(pady=80)
 
 root.mainloop()
