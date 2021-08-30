@@ -1,16 +1,35 @@
 from tkinter import *
+from tkinter import filedialog
+from pygame import mixer
 from PIL import ImageTk, Image
+from pathlib import Path
+import os
 
 root = Tk()
-root.geometry('320x400')
+root.title("Music Player")
+root.geometry('800x400')
 
-my_pic = Image.open("images/nutka.jpeg")
+songsframe = LabelFrame(root,text="Song Playlist",font=("times new roman",15,"bold"),bg="grey",fg="white",bd=5,relief=GROOVE)
+songsframe.place(x=400, y=0,width=400,height=200)
+scrol_y = Scrollbar(songsframe,orient=VERTICAL)
+playlist = Listbox(songsframe,yscrollcommand=scrol_y.set,selectbackground="gold",selectmode=SINGLE,font=("times new roman",12,"bold"),bg="silver",fg="navyblue",bd=5,relief=GROOVE)
+scrol_y.pack(side=RIGHT,fill=Y)
+scrol_y.config(command=playlist.yview)
+playlist.pack(fill=BOTH)
+os.chdir("songs")
+songtracks = os.listdir()
 
-resized = my_pic.resize((100, 100), Image.ANTIALIAS)
+for track in songtracks:
+	playlist.insert(END,track)
 
-new_pic = ImageTk.PhotoImage(resized)
+def play():
+	mixer.init()
+	mixer.music.load(playlist.get(ACTIVE))
+	mixer.music.play()
 
-my_label = Label(root, image=new_pic)
-my_label.pack(pady=80)
+
+Play = Button(root, text="Play", command=play)
+Play.pack()
+
 
 root.mainloop()
