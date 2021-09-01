@@ -10,7 +10,7 @@ root = Tk()
 root.title("Music Player")
 root.geometry('440x400')
 root.resizable(0,0)
-root.config(background='black')
+#root.config(background='black')
 
 #function to load button
 '''
@@ -28,6 +28,20 @@ Load = Button(root, text="Load", command=load)
 Load.pack()
 Load.place(x=10,y=10);
 '''
+
+#volume
+def volume(val):
+	volume = int(val) / 100
+	mixer.init()
+	mixer.music.set_volume(volume)
+
+
+scale = Scale(root, from_=0, to=100, orient=HORIZONTAL, command=volume)
+scale.set(50)
+scale.pack()
+scale.place(x=165, y=250)
+
+
 
 #bottom belt
 down_belt = Label(root, bg='#424242')
@@ -57,7 +71,7 @@ def play():
 
 Play = Button(root, text="Play", command=play)
 Play.pack()
-Play.place(x=140,y=370, width=57);
+Play.place(x=140,y=370, width=57)
 
 #function to pause button
 def toggleText():
@@ -81,7 +95,7 @@ def pause():
 
 Pause = Button(root, text="Pause", command=lambda:[toggleText(), pause()])
 Pause.pack()
-Pause.place(x=240,y=370, width=57);
+Pause.place(x=240,y=370, width=57)
 
 
 
