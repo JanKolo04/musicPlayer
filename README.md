@@ -1,5 +1,3 @@
 # musicPlayer
-Music Player 
-
-
+Music Player
 
