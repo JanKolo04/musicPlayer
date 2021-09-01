@@ -30,22 +30,27 @@ Load.place(x=10,y=10);
 '''
 
 #volume
+
+#edits: add frame to volme slider
 def volume(val):
 	volume = int(val) / 100
 	mixer.init()
 	mixer.music.set_volume(volume)
 
 
-scale = Scale(root, from_=0, to=100, orient=HORIZONTAL, command=volume)
+frame = LabelFrame(root, text='Volume', cursor='target')
+frame.grid(row=5, column=0, padx=165, pady=250)
+
+
+scale = Scale(frame, from_=0, to=100, orient=HORIZONTAL, command=volume, length=100)
 scale.set(50)
 scale.pack()
-scale.place(x=165, y=250)
 
 
 
 #bottom belt
 down_belt = Label(root, bg='#424242')
-down_belt.pack()
+down_belt.grid()
 down_belt.place(x=0, y=360, height=40, width=440)
 
 #function to play button
@@ -70,8 +75,8 @@ def play():
 
 
 Play = Button(root, text="Play", command=play)
-Play.pack()
-Play.place(x=140,y=370, width=57)
+Play.grid()
+Play.place(x=160,y=368, width=57)
 
 #function to pause button
 def toggleText():
@@ -94,8 +99,8 @@ def pause():
 
 
 Pause = Button(root, text="Pause", command=lambda:[toggleText(), pause()])
-Pause.pack()
-Pause.place(x=240,y=370, width=57)
+Pause.grid()
+Pause.place(x=240,y=368, width=57)
 
 
 

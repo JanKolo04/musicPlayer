@@ -15,8 +15,14 @@ def volume(val):
 	mixer.music.set_volume(volume)
 
 
-scale = Scale(root, from_=0, to=100, orient=HORIZONTAL, command=volume)
+frame = LabelFrame(root, text='Volume')
+frame.grid(row=5, column=0, padx=50, pady=300)
+
+
+scale = Scale(frame, from_=0, to=100, orient=HORIZONTAL, command=volume)
 scale.set(50)
 scale.pack()
+
+
 
 root.mainloop()
