@@ -10,7 +10,7 @@ root = Tk()
 root.title("Music Player")
 root.geometry('440x400')
 root.resizable(0,0)
-#root.config(background='black')
+root.config(background='black')
 
 #function to load button
 '''
