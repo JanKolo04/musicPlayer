@@ -12,6 +12,26 @@ root.geometry('440x400')
 root.resizable(0,0)
 root.config(background='black')
 
+'''
+IMAGES
+'''
+
+#photo on play button
+play_image = Image.open('images/play.png')
+
+resized = play_image.resize((40,40), Image.ANTIALIAS)
+
+play_pick = ImageTk.PhotoImage(resized)
+
+
+#photo on pause button
+pause_image = Image.open('images/pause.png')
+
+resized2 = pause_image.resize((40,40), Image.ANTIALIAS)
+
+pause_pick = ImageTk.PhotoImage(resized2)
+
+
 #function to load button
 '''
 def load():
@@ -74,17 +94,9 @@ def play():
 	mixer.music.play()
 
 
-#photo on play button
-play_image = Image.open('images/play2.png')
-
-resized = play_image.resize((40,40), Image.ANTIALIAS)
-
-play_pick = ImageTk.PhotoImage(resized)
-
-
 Play = Button(root, image=play_pick, command=play)
-Play.gird()
-Play.place(x=160,y=368, height=25, width=57)
+Play.grid()
+Play.place(x=160,y=350, height=40, width=40)
 
 #function to pause button
 def toggleText():
@@ -106,9 +118,9 @@ def pause():
 		playing_state = False
 
 
-Pause = Button(root, text="Pause", command=lambda:[toggleText(), pause()])
+Pause = Button(root, image=pause_pick, command=lambda:[toggleText(), pause()])
 Pause.grid()
-Pause.place(x=240,y=368, height=25, width=57)
+Pause.place(x=240,y=350, height=40, width=40)
 
 
 

@@ -5,20 +5,48 @@ from PIL import ImageTk, Image
 from pathlib import Path
 import os
 
-
 root = Tk()
-root.title("Music Player")
-root.geometry('440x400')
-root.resizable(0,0)
+root.title("MSC")
+root.geometry('400x400')
 
-play_image = Image.open('images/play.png')
+mixer.init()
 
-resized = play_image.resize((40,40), Image.ANTIALIAS)
+mxstate = 0
 
-play_pick = ImageTk.PhotoImage(resized)
+songsframe = LabelFrame(root,text="Song Playlist",font=("times new roman",15,"bold"),bg="grey",fg="white",bd=5,relief=GROOVE)
+songsframe.place(x=20, y=20,width=400,height=200)
+scrol_y = Scrollbar(songsframe,orient=VERTICAL)
+playlist = Listbox(songsframe,yscrollcommand=scrol_y.set,selectbackground="gold",selectmode=SINGLE,font=("times new roman",12,"bold"),bg="silver",fg="navyblue",bd=5,relief=GROOVE)
+scrol_y.pack(side=RIGHT,fill=Y)
+scrol_y.config(command=playlist.yview)
+playlist.pack(fill=BOTH)
+os.chdir("songs")
+songtracks = os.listdir()
 
+for track in songtracks:
+    playlist.insert(END,track)
 
-Play = Button(root, image=play_pick)
-Play.pack()
+def play_stop():
+    global mxstate
+
+    if mxstate == 0: 
+        mixer.music.load(playlist.get(ACTIVE))
+        mixer.music.play()
+        Play_stop.configure(text = "Pause")
+        mxstate =  1
+        return
+
+    if mxstate == 1:
+        mixer.music.pause()
+        Play_stop.configure(text = "Resume")
+    else: 
+        mixer.music.unpause()
+        Play_stop.configure(text = "Pause")
+    mxstate = 3-mxstate 
+     
+Play_stop =Button(root, text='Play', width=14, bg='red', fg='black', command=play_stop)
+Play_stop.pack()
+Play_stop.place(x=240,y=350, height=40, width=40)
+
 
 root.mainloop()
