@@ -51,7 +51,7 @@ scale.pack()
 #bottom belt
 down_belt = Label(root, bg='#424242')
 down_belt.grid()
-down_belt.place(x=0, y=360, height=40, width=440)
+down_belt.place(x=0, y=340, height=60, width=440)
 
 #function to play button
 songsframe = LabelFrame(root,text="Song Playlist",font=("times new roman",15,"bold"),bg="grey",fg="white",bd=5,relief=GROOVE)
@@ -74,9 +74,17 @@ def play():
 	mixer.music.play()
 
 
-Play = Button(root, text="Play", command=play)
+#photo on play button
+play_image = Image.open('images/play.png')
+
+resized = play_image.resize((40,40), Image.ANTIALIAS)
+
+play_pick = ImageTk.PhotoImage(resized)
+
+
+Play = Button(root, image=play_pick)
 Play.grid()
-Play.place(x=160,y=368, width=57)
+Play.place(x=160,y=368, height=25, width=57)
 
 #function to pause button
 def toggleText():
@@ -100,7 +108,7 @@ def pause():
 
 Pause = Button(root, text="Pause", command=lambda:[toggleText(), pause()])
 Pause.grid()
-Pause.place(x=240,y=368, width=57)
+Pause.place(x=240,y=368, height=25, width=57)
 
 
 
