@@ -75,15 +75,15 @@ def play():
 
 
 #photo on play button
-play_image = Image.open('images/play.png')
+play_image = Image.open('images/play2.png')
 
 resized = play_image.resize((40,40), Image.ANTIALIAS)
 
 play_pick = ImageTk.PhotoImage(resized)
 
 
-Play = Button(root, image=play_pick)
-Play.grid()
+Play = Button(root, image=play_pick, command=play)
+Play.gird()
 Play.place(x=160,y=368, height=25, width=57)
 
 #function to pause button
