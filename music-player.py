@@ -19,17 +19,33 @@ IMAGES
 #photo on play button
 play_image = Image.open('images/play.png')
 
-resized = play_image.resize((40,40), Image.ANTIALIAS)
+resized_play = play_image.resize((70,40), Image.ANTIALIAS)
 
-play_pick = ImageTk.PhotoImage(resized)
+play_pick = ImageTk.PhotoImage(resized_play)
 
 
 #photo on pause button
 pause_image = Image.open('images/pause.png')
 
-resized2 = pause_image.resize((40,40), Image.ANTIALIAS)
+resized_pause = pause_image.resize((60,45), Image.ANTIALIAS)
 
-pause_pick = ImageTk.PhotoImage(resized2)
+pause_pick = ImageTk.PhotoImage(resized_pause)
+
+
+#photo on next button
+next_image = Image.open('images/next.png')
+
+resized_next = next_image.resize((40,45), Image.ANTIALIAS)
+
+next_pick = ImageTk.PhotoImage(resized_next)
+
+
+#button on previous button
+previous_image = Image.open('images/previous.png')
+
+resized_previous = previous_image.resize((40,40), Image.ANTIALIAS)
+
+previous_pick = ImageTk.PhotoImage(resized_previous)
 
 
 #function to load button
@@ -73,6 +89,8 @@ down_belt = Label(root, bg='#424242')
 down_belt.grid()
 down_belt.place(x=0, y=340, height=60, width=440)
 
+
+
 #function to play button
 songsframe = LabelFrame(root,text="Song Playlist",font=("times new roman",15,"bold"),bg="grey",fg="white",bd=5,relief=GROOVE)
 songsframe.place(x=20, y=20,width=400,height=200)
@@ -94,9 +112,9 @@ def play():
 	mixer.music.play(loops=0)
 
 
-Play = Button(root, image=play_pick, command=play)
+Play = Button(root, image=play_pick, borderwidth=0, command=play)
 Play.grid()
-Play.place(x=160,y=350, height=40, width=40)
+Play.place(x=160,y=353, height=34, width=48)
 
 #function to pause button
 def toggleText():
@@ -118,9 +136,9 @@ def pause():
 		playing_state = False
 
 
-Pause = Button(root, image=pause_pick, command=lambda:[toggleText(), pause()])
+Pause = Button(root, image=pause_pick, borderwidth=0, command=lambda:[toggleText(), pause()])
 Pause.grid()
-Pause.place(x=240,y=350, height=40, width=40)
+Pause.place(x=240,y=353, height=34, width=48)
 
 
 def next_button():
@@ -138,9 +156,33 @@ def next_button():
 
 
 
-Next = Button(root, text='Next', command=next_button)
+Next = Button(root, image=next_pick, borderwidth=0, command=next_button)
 Next.grid()
-Next.place(x=100,y=350, height=40, width=40)
+Next.place(x=320,y=350, height=40, width=40)
+
+
+
+def previous_button():
+	previosu_song = playlist.curselection()
+	previosu_song = previosu_song[0]-1
+	song = playlist.get(previosu_song)
+
+	mixer.init()
+	mixer.music.load(song)
+	mixer.music.play(loops=0)
+
+	playlist.selection_clear(0, END)
+	playlist.activate(previosu_song)
+	playlist.selection_set(previosu_song, last=None)
+
+
+
+Previous = Button(root, image=previous_pick, borderwidth=0, command=previous_button)
+Previous.grid()
+Previous.place(x=80,y=350, height=40, width=40)
+
+
+
 
 root.mainloop()
 
