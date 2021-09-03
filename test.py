@@ -1,21 +1,3 @@
-'''contents = ['apple', 'fruit', 'vegi', 'leafy']
-
-search_term = contents[0]
-for i in range(len(contents)-1):
-   if contents[i] == search_term:
-       result = contents[i+1]
-
-print(result)'''
-
-
-
-
-
-
-
-
-
-
 from tkinter import *
 from tkinter import filedialog
 from pygame import mixer

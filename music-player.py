@@ -91,7 +91,7 @@ for track in songtracks:
 def play():
 	mixer.init()
 	mixer.music.load(playlist.get(ACTIVE))
-	mixer.music.play()
+	mixer.music.play(loops=0)
 
 
 Play = Button(root, image=play_pick, command=play)
@@ -123,7 +123,24 @@ Pause.grid()
 Pause.place(x=240,y=350, height=40, width=40)
 
 
+def next_button():
+	next_song = playlist.curselection()
+	next_song = next_song[0]+1
+	song = playlist.get(next_song)
 
+	mixer.init()
+	mixer.music.load(song)
+	mixer.music.play(loops=0)
+
+	playlist.selection_clear(0, END)
+	playlist.activate(next_song)
+	playlist.selection_set(next_song, last=None)
+
+
+
+Next = Button(root, text='Next', command=next_button)
+Next.grid()
+Next.place(x=100,y=350, height=40, width=40)
 
 root.mainloop()
 
