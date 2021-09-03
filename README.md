@@ -8,4 +8,5 @@ https://github.com/srinidhi14vaddy/MP3-Player-using-Tkinter-and-Mutagen-in-Pytho
 
 - [ ] make next and previus button
 - [x] volume level 
-- [ ] photo on buttons
+- [x] photo on buttons
+- [ ] 
