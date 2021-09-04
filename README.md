@@ -56,3 +56,5 @@ Play.place(x=160,y=353, height=34, width=48)
 - [x] make next and previus button
 - [x] volume level 
 - [x] photo on buttons 
+
+
