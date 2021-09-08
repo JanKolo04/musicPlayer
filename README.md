@@ -56,11 +56,10 @@ Play.place(x=160,y=353, height=34, width=48)
 - [x] make next and previus button
 - [x] volume level 
 - [x] photo on buttons 
+- [ ] the current playing song
+def song_data()
+https://github.com/srinidhi14vaddy/MP3-Player-using-Tkinter-and-Mutagen-in-Python/blob/master/mp3.py
 
 
-
-
-
-
-
-
+- [ ] delete play button and leave only pause/unpause
+- [ ] add playing song when user click two times on song from playlist 
