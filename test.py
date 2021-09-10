@@ -4,11 +4,12 @@ from pygame import mixer
 from PIL import ImageTk, Image
 from pathlib import Path
 import os
-
+import time
+from mutagen.mp3 import MP3
 
 root = Tk()
 root.title("Music Player")
-root.geometry('440x400')
+root.geometry('440x450')
 root.resizable(0,0)
 root.config(background='black')
 
@@ -65,9 +66,28 @@ Load.pack()
 Load.place(x=10,y=10);
 '''
 
-#volume
+#grab song lenght time info
+def play_time():
+	current_time = mixer.music.get_pos() / 1000
+	converted_current_time = time.strftime('%M:%S', time.gmtime(current_time))
 
-#edits: add frame to volme slider
+	#mutagen
+	current_song = playlist.curselection()
+	song = playlist.get(current_song)
+
+	song_mut = MP3(song)
+	song_lenght = song_mut.info.length
+	converted_song_lenght = time.strftime('%M:%S', time.gmtime(song_lenght))
+
+	#text
+	Text = f'   {converted_current_time} 		 		           	         {converted_song_lenght}'
+
+	status_bar.config(text=Text)
+	status_bar.after(1000, play_time)
+
+
+
+#volume
 def volume(val):
 	volume = int(val) / 100
 	mixer.init()
@@ -87,7 +107,7 @@ scale.pack()
 #bottom belt
 down_belt = Label(root, bg='#424242')
 down_belt.grid()
-down_belt.place(x=0, y=340, height=60, width=440)
+down_belt.place(x=0, y=390, height=60, width=440)
 
 
 
@@ -95,12 +115,15 @@ down_belt.place(x=0, y=340, height=60, width=440)
 songsframe = LabelFrame(root,text="Song Playlist",font=("times new roman",15,"bold"),bg="grey",fg="white",bd=5,relief=GROOVE)
 songsframe.place(x=20, y=20,width=400,height=200)
 scrol_y = Scrollbar(songsframe,orient=VERTICAL)
-playlist = Listbox(songsframe,yscrollcommand=scrol_y.set,selectbackground="gold",selectmode=SINGLE,font=("times new roman",12,"bold"),bg="silver",fg="navyblue",bd=5,relief=GROOVE)
+playlist = Listbox(songsframe,yscrollcommand=scrol_y.set,selectbackground="gold",selectmode=SINGLE,font=("times new roman",12,"bold"),bg="grey",fg="navyblue",bd=5,relief=GROOVE)
 scrol_y.pack(side=RIGHT,fill=Y)
 scrol_y.config(command=playlist.yview)
 playlist.pack(fill=BOTH)
 os.chdir("songs")
 songtracks = os.listdir()
+actual_song = 0
+
+
 
 for track in songtracks:
 	playlist.insert(END,track)
@@ -111,19 +134,14 @@ def play():
 	mixer.music.load(playlist.get(ACTIVE))
 	mixer.music.play(loops=0)
 
+	play_time()
+
 
 Play = Button(root, image=play_pick, borderwidth=0, command=play)
 Play.grid()
-Play.place(x=160,y=353, height=34, width=48)
+Play.place(x=160,y=403, height=34, width=48)
 
 #function to pause button
-def toggleText():
-	if (Pause['text'] == 'Pause'):
-		Pause['text'] = 'Unpause'
-	else:
-		Pause['text'] = 'Pause'
-
-
 playing_state = False 
 def pause():
 	global playing_state
@@ -136,9 +154,9 @@ def pause():
 		playing_state = False
 
 
-Pause = Button(root, image=pause_pick, borderwidth=0, command=lambda:[toggleText(), pause()])
+Pause = Button(root, image=pause_pick, borderwidth=0, command=pause)
 Pause.grid()
-Pause.place(x=240,y=353, height=34, width=48)
+Pause.place(x=240,y=403, height=34, width=48)
 
 
 def next_button():
@@ -158,7 +176,7 @@ def next_button():
 
 Next = Button(root, image=next_pick, borderwidth=0, command=next_button)
 Next.grid()
-Next.place(x=320,y=350, height=40, width=40)
+Next.place(x=320,y=400, height=40, width=40)
 
 
 
@@ -179,7 +197,17 @@ def previous_button():
 
 Previous = Button(root, image=previous_pick, borderwidth=0, command=previous_button)
 Previous.grid()
-Previous.place(x=80,y=350, height=40, width=40)
+Previous.place(x=80,y=400, height=40, width=40)
+
+
+
+#status bar
+status_bar = Label(root, text='', bg="black", fg="white", bd=0, relief=GROOVE, anchor=SW)
+status_bar.grid()
+status_bar.place(height=60, width=440, y=330)
+
+
+
 
 
 
