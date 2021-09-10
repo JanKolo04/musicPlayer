@@ -4,7 +4,6 @@ from pygame import mixer
 from PIL import ImageTk, Image
 from pathlib import Path
 import os
-from mutagen.easyid3 import EasyID3
 
 
 root = Tk()
