@@ -4,7 +4,8 @@ from pygame import mixer
 from PIL import ImageTk, Image
 from pathlib import Path
 import os
-
+import time
+from mutagen.mp3 import MP3
 
 root = Tk()
 root.title("Music Player")
@@ -65,9 +66,28 @@ Load.pack()
 Load.place(x=10,y=10);
 '''
 
-#volume
+#grab song lenght time info
+def play_time():
+	current_time = mixer.music.get_pos() / 1000
+	converted_current_time = time.strftime('%M:%S', time.gmtime(current_time))
 
-#edits: add frame to volme slider
+	#mutagen
+	current_song = playlist.curselection()
+	song = playlist.get(current_song)
+
+	song_mut = MP3(song)
+	song_lenght = song_mut.info.length
+	converted_song_lenght = time.strftime('%M:%S', time.gmtime(song_lenght))
+
+	#text
+	Text = f'   {converted_current_time} 		 		           	         {converted_song_lenght}'
+
+	status_bar.config(text=Text)
+	status_bar.after(1000, play_time)
+
+
+
+#volume
 def volume(val):
 	volume = int(val) / 100
 	mixer.init()
@@ -113,6 +133,8 @@ def play():
 	mixer.init()
 	mixer.music.load(playlist.get(ACTIVE))
 	mixer.music.play(loops=0)
+
+	play_time()
 
 
 Play = Button(root, image=play_pick, borderwidth=0, command=play)
@@ -176,6 +198,16 @@ def previous_button():
 Previous = Button(root, image=previous_pick, borderwidth=0, command=previous_button)
 Previous.grid()
 Previous.place(x=80,y=400, height=40, width=40)
+
+
+
+#status bar
+status_bar = Label(root, text='', bg="black", fg="white", bd=0, relief=GROOVE, anchor=SW)
+status_bar.grid()
+status_bar.place(height=60, width=440, y=330)
+
+
+
 
 
 
