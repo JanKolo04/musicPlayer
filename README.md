@@ -67,5 +67,6 @@ def song_data()
 https://github.com/srinidhi14vaddy/MP3-Player-using-Tkinter-and-Mutagen-in-Python/blob/master/mp3.py
 
 
-- [ ] delete play button and leave only pause/unpause
-- [ ] add playing song when user click two times on song from playlist 
+- [x] duraction and lenght song 
+- [ ] delete play button and leave only play/pause
+- [ ] add song slider
