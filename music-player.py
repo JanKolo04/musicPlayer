@@ -6,6 +6,7 @@ from pathlib import Path
 import os
 import time
 from mutagen.mp3 import MP3
+import tkinter.ttk as ttk
 
 root = Tk()
 root.title("Music Player")
@@ -84,7 +85,11 @@ exit.place(x=380, y=10, height=40, width=40)
 
 #grab song lenght time info
 def play_time():
+	global song_lenght
+	#grab current song elapsed time
 	current_time = mixer.music.get_pos() / 1000
+
+	#convert to time format
 	converted_current_time = time.strftime('%M:%S', time.gmtime(current_time))
 
 	#mutagen
@@ -95,10 +100,53 @@ def play_time():
 	song_lenght = song_mut.info.length
 	converted_song_lenght = time.strftime('%M:%S', time.gmtime(song_lenght))
 
-	#text
-	Text = f'   {converted_current_time} 		 		           	         {converted_song_lenght}'
 
-	status_bar.config(text=Text)
+
+	#current time by 1 second
+	current_time += 1
+
+	if int(my_slider.get()) == int(song_lenght):
+		#text
+		Text = f'				                             {converted_song_lenght}'
+		#Output time in text bar
+		status_bar.config(text=Text)
+
+	elif int(my_slider.get()) == int(current_time):
+		#slider hasnt been moved
+		#update slide posittion
+		slider_posittion = int(song_lenght)
+		my_lider.config(to=slider_posittion, value=int(current_time))
+	else:
+		#slider has been moved
+		#update slide posittion 
+		slider_posittion = int(song_lenght)
+		my_slider.config(to=slider_posittion, value=int(my_slider.get()))
+		
+		#convert to time format
+		converted_current_time = time.strftime('%M:%S', time.gmtime(int(my_slider.get())))
+
+		#text
+		Text = f'   {converted_current_time} 		 		           	         {converted_song_lenght}'
+		#Output time in text bar
+		status_bar.config(text=Text)
+
+		#move this thing along by one seckond 
+		next_time = int(my_slider.get()) + 1
+		my_slider.config(value=next_time)
+
+
+
+
+	#text
+	#Text = f'   {converted_current_time} 		 		           	         {converted_song_lenght}'
+	#Output time in text bar
+	#status_bar.config(text=Text)
+
+	#update slider posittion to current song posittion
+	#my_slider.config(value=current_time)
+
+
+	#update time
 	status_bar.after(1000, play_time)
 
 
@@ -151,6 +199,10 @@ def play():
 	mixer.music.play(loops=0)
 
 	play_time()
+
+	#update sliser posittion
+	#slider_posittion = int(song_lenght)
+	#my_slider.config(to=slider_posittion, value=0)
 
 
 Play = Button(root, image=play_pick, borderwidth=0, command=play)
@@ -211,6 +263,12 @@ def previous_button():
 
 
 
+def slide(x):
+	mixer.music.load(playlist.get(ACTIVE))
+	mixer.music.play(loops=0, start=int(my_slider.get()))
+
+
+
 Previous = Button(root, image=previous_pick, borderwidth=0, command=previous_button)
 Previous.grid()
 Previous.place(x=80,y=450, height=40, width=40)
@@ -218,13 +276,15 @@ Previous.place(x=80,y=450, height=40, width=40)
 
 
 #status bar
-status_bar = Label(root, text='', bg="black", fg="white", bd=1, relief=GROOVE, anchor=SW)
+status_bar = Label(root, text='', bg="#424242", fg="white", bd=0, relief=GROOVE, anchor=SW)
 status_bar.grid()
 status_bar.place(height=60, width=440, y=380)
 
 
-
-
+#slider
+my_slider = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, value=0, command=slide, length=360)
+my_slider.grid()
+my_slider.place(x=40, y=390)
 
 
 
