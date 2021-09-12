@@ -13,6 +13,6 @@ scale.pack()
 
 style = ttk.Style()
 style.configure('Horizontal.TScale', bd=0, background='black')
-style.map('Horizontal.TScale', )
+
 
 root.mainloop()
