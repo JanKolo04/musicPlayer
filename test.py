@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from tkinter import *
 import tkinter.ttk as ttk
 
@@ -9,13 +8,11 @@ root.title("My Window")
 root.config(background='black')
 
 
-scale = ttk.Scale(root, from_=0, to=100, length=100, orient=HORIZONTAL)
+style = ttk.Style()
+style.configure("myStyle.Horizontal.TScale", background="#505050")
+
+scale = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, style="myStyle.Horizontal.TScale")
 scale.pack()
 
-style = ttk.Style()
-style.configure('Horizontal.TScale', bd=0, background='black')
-
-
 root.mainloop()
-=======
->>>>>>> ecca8868a8e07425a7161d5afe8b2c92492deafd
+
