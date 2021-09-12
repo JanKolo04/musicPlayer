@@ -280,9 +280,13 @@ status_bar = Label(root, text='', bg="#424242", fg="white", bd=0, relief=GROOVE,
 status_bar.grid()
 status_bar.place(height=60, width=440, y=380)
 
+#style for slider
+style = ttk.Style()
+style.configure("myStyle.Horizontal.TScale", background="#505050")
+
 
 #slider
-my_slider = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, value=0, command=slide, length=360)
+my_slider = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, value=0, command=slide, length=360, style="myStyle.Horizontal.TScale")
 my_slider.grid()
 my_slider.place(x=40, y=390)
 
