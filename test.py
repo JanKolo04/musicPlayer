@@ -15,7 +15,4 @@ scale = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, style="myStyle.Horiz
 scale.pack()
 
 root.mainloop()
-<<<<<<< HEAD
-=======
 
->>>>>>> 4f101c7994d2e7c10ccfd317d8b12fc93e81813d
