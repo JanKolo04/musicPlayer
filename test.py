@@ -1,7 +1,17 @@
 from tkinter import *
+import tkinter.ttk as ttk
+
 
 root = Tk()
-root.minsize(290, 700)
+root.minsize(290, 100)
 root.title("My Window")
-root.wm_iconbitmap('images/exit.png')
+root.config(background='black')
+
+
+scale = ttk.Scale(root, from_=0, to=100, length=100, orient=HORIZONTAL)
+scale.pack()
+
+style = ttk.Style()
+style.configure('Horizontal.TScale', bd=0, background='black')
+
 root.mainloop()
