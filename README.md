@@ -6,7 +6,7 @@ Music Player
 <img width="442" alt="Zrzut ekranu 2021-09-3 o 17 51 21" src="https://user-images.githubusercontent.com/76879087/132033387-097bff4f-3dda-4d0f-8991-ce12574e11fc.png">
 
 
-# How i want to appclication wanna look 
+# How i wanna be application look
 
 ![new_design](https://user-images.githubusercontent.com/76879087/132889944-282fc089-626b-4f3a-8b9b-feac06b42594.png)
 
