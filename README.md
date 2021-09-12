@@ -1,12 +1,12 @@
 # musicPlayer
 Music Player
 
-Music player actualy design
+# Music player actualy design
 
 <img width="442" alt="Zrzut ekranu 2021-09-3 o 17 51 21" src="https://user-images.githubusercontent.com/76879087/132033387-097bff4f-3dda-4d0f-8991-ce12574e11fc.png">
 
 
-Design wich i want 
+# How i wanna be application look
 
 ![new_design](https://user-images.githubusercontent.com/76879087/132889944-282fc089-626b-4f3a-8b9b-feac06b42594.png)
 
@@ -63,10 +63,7 @@ Play.place(x=160,y=353, height=34, width=48)
 - [x] volume level 
 - [x] photo on buttons 
 - [ ] the current playing song
-def song_data()
-https://github.com/srinidhi14vaddy/MP3-Player-using-Tkinter-and-Mutagen-in-Python/blob/master/mp3.py
-
-
 - [x] duraction and lenght song 
 - [ ] delete play button and leave only play/pause
-- [ ] add song slider
+- [x] add song slider
+- [ ] change slider font 
