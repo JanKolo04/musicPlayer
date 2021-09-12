@@ -110,12 +110,14 @@ def play_time():
 		Text = f'				                             {converted_song_lenght}'
 		#Output time in text bar
 		status_bar.config(text=Text)
+	elif playing_state:
+		pass
 
 	elif int(my_slider.get()) == int(current_time):
 		#slider hasnt been moved
 		#update slide posittion
 		slider_posittion = int(song_lenght)
-		my_lider.config(to=slider_posittion, value=int(current_time))
+		my_slider.config(to=slider_posittion, value=int(current_time))
 	else:
 		#slider has been moved
 		#update slide posittion 
@@ -228,6 +230,10 @@ Pause.place(x=240,y=453, height=34, width=48)
 
 
 def next_button():
+	#reser slider and status bar
+	status_bar.config(text='')
+	my_slider.config(value=0)
+
 	next_song = playlist.curselection()
 	next_song = next_song[0]+1
 	song = playlist.get(next_song)
@@ -249,6 +255,10 @@ Next.place(x=320,y=450, height=40, width=40)
 
 
 def previous_button():
+	#reset slider nad status bar
+	status_bar.config(text='')
+	my_slider.config(value=0)
+
 	previosu_song = playlist.curselection()
 	previosu_song = previosu_song[0]-1
 	song = playlist.get(previosu_song)
@@ -280,19 +290,14 @@ status_bar = Label(root, text='', bg="#424242", fg="white", bd=0, relief=GROOVE,
 status_bar.grid()
 status_bar.place(height=60, width=440, y=380)
 
-#style for slider
-style = ttk.Style()
-style.configure("myStyle.Horizontal.TScale", background="#505050")
-
 
 #slider
-my_slider = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, value=0, command=slide, length=360, style="myStyle.Horizontal.TScale")
+my_slider = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, value=0, command=slide, length=360)
 my_slider.grid()
 my_slider.place(x=40, y=390)
 
 
 
 root.mainloop()
-
 
 
