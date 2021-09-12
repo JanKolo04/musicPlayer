@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from tkinter import *
 import tkinter.ttk as ttk
 
@@ -16,3 +17,5 @@ style.configure('Horizontal.TScale', bd=0, background='black')
 
 
 root.mainloop()
+=======
+>>>>>>> ecca8868a8e07425a7161d5afe8b2c92492deafd
