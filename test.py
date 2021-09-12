@@ -8,11 +8,14 @@ root.title("My Window")
 root.config(background='black')
 
 
-scale = ttk.Scale(root, from_=0, to=100, length=100, orient=HORIZONTAL)
+style = ttk.Style()
+style.configure("myStyle.Horizontal.TScale", background="#505050")
+
+scale = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, style="myStyle.Horizontal.TScale")
 scale.pack()
 
-style = ttk.Style()
-style.configure('Horizontal.TScale', bd=0, background='black')
-
-
 root.mainloop()
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4f101c7994d2e7c10ccfd317d8b12fc93e81813d
