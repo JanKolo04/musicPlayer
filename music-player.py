@@ -107,7 +107,7 @@ def play_time():
 
 	if int(my_slider.get()) == int(song_lenght):
 		#text
-		Text = f'				                             {converted_song_lenght}'
+		Text = f'				                         {converted_song_lenght}'
 		#Output time in text bar
 		status_bar.config(text=Text)
 	elif playing_state:
@@ -286,7 +286,7 @@ Previous.place(x=80,y=450, height=40, width=40)
 
 
 #status bar
-status_bar = Label(root, text='', bg="#424242", fg="white", bd=0, relief=GROOVE, anchor=SW)
+status_bar = Label(root, text='', bg="#424242", fg="white", bd=0, relief=GROOVE, anchor=S)
 status_bar.grid()
 status_bar.place(height=60, width=440, y=380)
 
