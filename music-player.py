@@ -107,9 +107,9 @@ def play_time():
 
 	if int(my_slider.get()) == int(song_lenght):
 		#text
-		Text = f'				                         {converted_song_lenght}'
+		Text = f'{converted_song_lenght}'
 		#Output time in text bar
-		status_bar.config(text=Text)
+		status_bar2.config(text=Text)
 	elif playing_state:
 		pass
 
@@ -128,9 +128,12 @@ def play_time():
 		converted_current_time = time.strftime('%M:%S', time.gmtime(int(my_slider.get())))
 
 		#text
-		Text = f'   {converted_current_time} 		 		           	         {converted_song_lenght}'
+		Text1 = f'{converted_current_time}'
 		#Output time in text bar
-		status_bar.config(text=Text)
+		status_bar1.config(text=Text1)
+
+		Text2 = f'{converted_song_lenght}'
+		status_bar2.config(text=Text2)
 
 		#move this thing along by one seckond 
 		next_time = int(my_slider.get()) + 1
@@ -149,7 +152,8 @@ def play_time():
 
 
 	#update time
-	status_bar.after(1000, play_time)
+	status_bar1.after(1000, play_time)
+	status_bar2.after(1000, play_time)
 
 
 
@@ -160,7 +164,7 @@ def volume(val):
 	mixer.music.set_volume(volume)
 
 
-frame = LabelFrame(root, text='Volume', cursor='target')
+frame = LabelFrame(root, text='Volume', cursor='arrow')
 frame.grid(row=5, column=0, padx=165, pady=290)
 
 
@@ -231,7 +235,10 @@ Pause.place(x=240,y=453, height=34, width=48)
 
 def next_button():
 	#reser slider and status bar
-	status_bar.config(text='')
+	status_bar1.config(text='')
+	my_slider.config(value=0)
+
+	status_bar2.config(text='')
 	my_slider.config(value=0)
 
 	next_song = playlist.curselection()
@@ -256,7 +263,10 @@ Next.place(x=320,y=450, height=40, width=40)
 
 def previous_button():
 	#reset slider nad status bar
-	status_bar.config(text='')
+	status_bar1.config(text='')
+	my_slider.config(value=0)
+
+	status_bar2.config(text='')
 	my_slider.config(value=0)
 
 	previosu_song = playlist.curselection()
@@ -284,20 +294,19 @@ Previous.grid()
 Previous.place(x=80,y=450, height=40, width=40)
 
 
+status_bar1 = Label(root, text='', bg='black', fg='white', bd=1, anchor=W)
+status_bar1.grid()
+status_bar1.place(height=30, width=220, y=410)
 
-#status bar
-status_bar = Label(root, text='', bg="#424242", fg="white", bd=0, relief=GROOVE, anchor=S)
-status_bar.grid()
-status_bar.place(height=60, width=440, y=380)
+status_bar2 = Label(root, text='', bg='black', fg='white', bd=1, anchor=E)
+status_bar2.grid()
+status_bar2.place(height=30, width=220, x=220, y=410)
 
 
 #slider
 my_slider = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, value=0, command=slide, length=360)
 my_slider.grid()
-my_slider.place(x=40, y=390)
-
+my_slider.place(x=40, y=390, height=20)
 
 
 root.mainloop()
-
-
