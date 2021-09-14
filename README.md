@@ -67,3 +67,6 @@ Play.place(x=160,y=353, height=34, width=48)
 - [ ] delete play button and leave only play/pause
 - [x] add song slider
 - [ ] change slider font 
+
+
+
