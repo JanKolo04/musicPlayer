@@ -76,12 +76,12 @@ Load.pack()
 Load.place(x=10,y=10);
 '''
 
-#exit button
+'''#exit button
 exit = Button(root, text='Exit',  image=exit_pick, bd=0,command=root.destroy)
 exit.grid()
 exit.place(x=380, y=10, height=40, width=40)
 
-
+'''
 
 #grab song lenght time info
 def play_time():
@@ -163,11 +163,11 @@ def volume(val):
 	mixer.init()
 	mixer.music.set_volume(volume)
 
-
+#volume frame
 frame = LabelFrame(root, text='Volume', cursor='arrow')
-frame.grid(row=5, column=0, padx=165, pady=290)
+frame.grid(row=5, column=0, padx=165, pady=220)
 
-
+#volume slider
 scale = Scale(frame, from_=0, to=100, orient=HORIZONTAL, command=volume, length=100)
 scale.set(50)
 scale.pack()
@@ -183,7 +183,7 @@ down_belt.place(x=0, y=440, height=60, width=440)
 
 #function to play button
 songsframe = LabelFrame(root,text="Song Playlist",font=("times new roman",15,"bold"),bg="grey",fg="white",bd=5,relief=GROOVE)
-songsframe.place(x=20, y=70,width=400,height=200)
+songsframe.place(x=20, y=1,width=400,height=200)
 scrol_y = Scrollbar(songsframe,orient=VERTICAL)
 playlist = Listbox(songsframe,yscrollcommand=scrol_y.set,selectbackground="gold",selectmode=SINGLE,font=("times new roman",12,"bold"),bg="grey",fg="navyblue",bd=5,relief=GROOVE)
 scrol_y.pack(side=RIGHT,fill=Y)
@@ -194,7 +194,7 @@ songtracks = os.listdir()
 actual_song = 0
 
 
-
+#print songs
 for track in songtracks:
 	playlist.insert(END,track)
 
@@ -205,6 +205,9 @@ def play():
 	mixer.music.play(loops=0)
 
 	play_time()
+
+	#current song
+	current_song.config(text=playlist.get(ACTIVE))
 
 	#update sliser posittion
 	#slider_posittion = int(song_lenght)
@@ -245,6 +248,9 @@ def next_button():
 	next_song = next_song[0]+1
 	song = playlist.get(next_song)
 
+	#current song
+	current_song.config(text=song)
+
 	mixer.init()
 	mixer.music.load(song)
 	mixer.music.play(loops=0)
@@ -269,17 +275,20 @@ def previous_button():
 	status_bar2.config(text='')
 	my_slider.config(value=0)
 
-	previosu_song = playlist.curselection()
-	previosu_song = previosu_song[0]-1
-	song = playlist.get(previosu_song)
+	previous_song = playlist.curselection()
+	previous_song = previous_song[0]-1
+	song = playlist.get(previous_song)
 
 	mixer.init()
 	mixer.music.load(song)
 	mixer.music.play(loops=0)
 
+	#current song
+	current_song.config(text=song)
+
 	playlist.selection_clear(0, END)
-	playlist.activate(previosu_song)
-	playlist.selection_set(previosu_song, last=None)
+	playlist.activate(previous_song)
+	playlist.selection_set(previous_song, last=None)
 
 
 
@@ -308,5 +317,9 @@ my_slider = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, value=0, command
 my_slider.grid()
 my_slider.place(x=40, y=390, height=20)
 
+#current song
+current_song = Label(root, text='', fg='green')
+current_song.grid()
+current_song.place(x=120,y=300,width=200, height=50)
 
 root.mainloop()
