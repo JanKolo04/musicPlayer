@@ -41,5 +41,17 @@ Time2_label.place(y=150, x=200, width=200, height=50)
 
 root.mainloop()'''
 
+'''
 
+92 Explorer
+Post Malone 
+
+
+1.Label
+#in next button
+2.label.config(next_song)
+#in previous song
+3.label.config(previous_song)
+
+'''
 
