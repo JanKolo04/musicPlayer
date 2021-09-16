@@ -215,7 +215,7 @@ def play_time():
 
 
 
-#volume
+'''#volume
 def volume(val):
 	volume = int(val) / 100
 	mixer.init()
@@ -228,7 +228,7 @@ frame.grid(row=5, column=0, padx=165, pady=220)
 #volume slider
 scale = Scale(frame, from_=0, to=100, orient=HORIZONTAL, command=volume, length=100)
 scale.set(50)
-scale.pack()
+scale.pack()'''
 
 
 
@@ -241,7 +241,7 @@ down_belt.place(x=0, y=440, height=60, width=440)
 
 #function to play button
 songsframe = LabelFrame(root,text="Song Playlist",font=("times new roman",15,"bold"),bg="grey",fg="white",bd=5,relief=GROOVE)
-songsframe.place(x=20, y=1,width=400,height=200)
+songsframe.place(x=10, y=60, width=420, height=200)
 scrol_y = Scrollbar(songsframe,orient=VERTICAL)
 playlist = Listbox(songsframe,yscrollcommand=scrol_y.set,selectbackground="gold",selectmode=SINGLE,font=("times new roman",12,"bold"),bg="grey",fg="navyblue",bd=5,relief=GROOVE)
 scrol_y.pack(side=RIGHT,fill=Y)
@@ -371,13 +371,13 @@ status_bar2.place(height=30, width=220, x=220, y=410)
 
 
 #slider
-my_slider = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, value=0, command=slide, length=360)
+my_slider = ttk.Scale(root, from_=0, to=100, orient=HORIZONTAL, value=0, command=slide, length=400)
 my_slider.grid()
-my_slider.place(x=40, y=390, height=20)
+my_slider.place(x=20, y=380, height=20)
 
 #current song
-current_song = Label(root, text='', bg='black', fg='white')
+current_song = Label(root, text='', fg='green', bg='yellow')
 current_song.grid()
-current_song.place(y=300,width=440, height=50)
+current_song.place(x=120,y=350, width=200, height=20)
 
 root.mainloop()
