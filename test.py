@@ -376,8 +376,8 @@ my_slider.grid()
 my_slider.place(x=40, y=390, height=20)
 
 #current song
-current_song = Label(root, text='', fg='green')
+current_song = Label(root, text='', bg='black', fg='white')
 current_song.grid()
-current_song.place(x=120,y=300,width=200, height=50)
+current_song.place(y=300,width=440, height=50)
 
 root.mainloop()
