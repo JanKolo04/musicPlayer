@@ -66,7 +66,7 @@ Play.place(x=160,y=353, height=34, width=48)
 - [x] duraction and lenght song 
 - [ ] delete play button and leave only play/pause
 - [x] add song slider
-- [ ] design of current song label
+- [x] design of current song label
 
 
 
