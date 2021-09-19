@@ -19,31 +19,31 @@ IMAGES
 '''
 
 #photo on play button
-play_image = Image.open('images/play.png')
+play_image = Image.open('images/play3.png')
 
-resized_play = play_image.resize((70,40), Image.ANTIALIAS)
+resized_play = play_image.resize((40,40), Image.ANTIALIAS)
 
 play_pick = ImageTk.PhotoImage(resized_play)
 
 
 #photo on pause button
-pause_image = Image.open('images/pause.png')
+pause_image = Image.open('images/pause3.png')
 
-resized_pause = pause_image.resize((60,45), Image.ANTIALIAS)
+resized_pause = pause_image.resize((40,40), Image.ANTIALIAS)
 
 pause_pick = ImageTk.PhotoImage(resized_pause)
 
 
 #photo on next button
-next_image = Image.open('images/next.png')
+next_image = Image.open('images/next3.png')
 
-resized_next = next_image.resize((40,45), Image.ANTIALIAS)
+resized_next = next_image.resize((40,40), Image.ANTIALIAS)
 
 next_pick = ImageTk.PhotoImage(resized_next)
 
 
 #photo on previous button
-previous_image = Image.open('images/previous.png')
+previous_image = Image.open('images/previous3.png')
 
 resized_previous = previous_image.resize((40,40), Image.ANTIALIAS)
 
@@ -162,11 +162,15 @@ scale.set(50)
 scale.pack()'''
 
 
-
 #bottom belt
-down_belt = Label(root, bg='#424242')
+down_belt = Label(root, bg='black')
 down_belt.grid()
 down_belt.place(x=0, y=440, height=60, width=440)
+
+#line
+line = Canvas(root,width=440, height=3, background='white')
+line.grid()
+line.place(y=432)
 
 
 
@@ -205,7 +209,7 @@ def play():
 
 Play = Button(root, image=play_pick, borderwidth=0, command=play)
 Play.grid()
-Play.place(x=160,y=453, height=34, width=48)
+Play.place(x=160,y=450, height=40, width=40)
 
 #function to pause button
 playing_state = False 
@@ -222,7 +226,7 @@ def pause():
 
 Pause = Button(root, image=pause_pick, borderwidth=0, command=pause)
 Pause.grid()
-Pause.place(x=240,y=453, height=34, width=48)
+Pause.place(x=240,y=450, height=40, width=40)
 
 
 def next_button():
@@ -280,16 +284,16 @@ def previous_button():
 	playlist.selection_set(previous_song, last=None)
 
 
+Previous = Button(root, image=previous_pick, borderwidth=0, command=previous_button)
+Previous.grid()
+Previous.place(x=80,y=450, height=40, width=40)
+
+
 
 def slide(x):
 	mixer.music.load(playlist.get(ACTIVE))
 	mixer.music.play(loops=0, start=int(my_slider.get()))
 
-
-
-Previous = Button(root, image=previous_pick, borderwidth=0, command=previous_button)
-Previous.grid()
-Previous.place(x=80,y=450, height=40, width=40)
 
 
 status_bar1 = Label(root, text='', bg='black', fg='white', bd=1, anchor=W)
@@ -312,3 +316,7 @@ current_song.grid()
 current_song.place(y=350, width=440, height=20)
 
 root.mainloop()
+
+
+
+

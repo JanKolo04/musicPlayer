@@ -77,31 +77,31 @@ IMAGES
 '''
 
 #photo on play button
-play_image = Image.open('images/play.png')
+play_image = Image.open('images/play3.png')
 
-resized_play = play_image.resize((70,40), Image.ANTIALIAS)
+resized_play = play_image.resize((40,40), Image.ANTIALIAS)
 
 play_pick = ImageTk.PhotoImage(resized_play)
 
 
 #photo on pause button
-pause_image = Image.open('images/pause.png')
+pause_image = Image.open('images/pause3.png')
 
-resized_pause = pause_image.resize((60,45), Image.ANTIALIAS)
+resized_pause = pause_image.resize((40,40), Image.ANTIALIAS)
 
 pause_pick = ImageTk.PhotoImage(resized_pause)
 
 
 #photo on next button
-next_image = Image.open('images/next.png')
+next_image = Image.open('images/next3.png')
 
-resized_next = next_image.resize((40,45), Image.ANTIALIAS)
+resized_next = next_image.resize((40,40), Image.ANTIALIAS)
 
 next_pick = ImageTk.PhotoImage(resized_next)
 
 
 #photo on previous button
-previous_image = Image.open('images/previous.png')
+previous_image = Image.open('images/previous3.png')
 
 resized_previous = previous_image.resize((40,40), Image.ANTIALIAS)
 
@@ -134,12 +134,12 @@ Load.pack()
 Load.place(x=10,y=10);
 '''
 
-'''#exit button
+#exit button
 exit = Button(root, text='Exit',  image=exit_pick, bd=0,command=root.destroy)
 exit.grid()
-exit.place(x=380, y=10, height=40, width=40)
+exit.place(x=390, y=10, height=40, width=40)
 
-'''
+
 
 #grab song lenght time info
 def play_time():
@@ -198,17 +198,6 @@ def play_time():
 		my_slider.config(value=next_time)
 
 
-
-
-	#text
-	#Text = f'   {converted_current_time} 		 		           	         {converted_song_lenght}'
-	#Output time in text bar
-	#status_bar.config(text=Text)
-
-	#update slider posittion to current song posittion
-	#my_slider.config(value=current_time)
-
-
 	#update time
 	status_bar1.after(1000, play_time)
 	status_bar2.after(1000, play_time)
@@ -231,17 +220,21 @@ scale.set(50)
 scale.pack()'''
 
 
-
 #bottom belt
-down_belt = Label(root, bg='#424242')
+down_belt = Label(root, bg='black')
 down_belt.grid()
 down_belt.place(x=0, y=440, height=60, width=440)
+
+#line
+line = Canvas(root,width=440, height=3, background='white')
+line.grid()
+line.place(y=432)
 
 
 
 #function to play button
 songsframe = LabelFrame(root,text="Song Playlist",font=("times new roman",15,"bold"),bg="grey",fg="white",bd=5,relief=GROOVE)
-songsframe.place(x=10, y=60, width=420, height=200)
+songsframe.place(x=10, y=80, width=420, height=200)
 scrol_y = Scrollbar(songsframe,orient=VERTICAL)
 playlist = Listbox(songsframe,yscrollcommand=scrol_y.set,selectbackground="gold",selectmode=SINGLE,font=("times new roman",12,"bold"),bg="grey",fg="navyblue",bd=5,relief=GROOVE)
 scrol_y.pack(side=RIGHT,fill=Y)
@@ -274,7 +267,7 @@ def play():
 
 Play = Button(root, image=play_pick, borderwidth=0, command=play)
 Play.grid()
-Play.place(x=160,y=453, height=34, width=48)
+Play.place(x=160,y=450, height=40, width=40)
 
 #function to pause button
 playing_state = False 
@@ -291,7 +284,7 @@ def pause():
 
 Pause = Button(root, image=pause_pick, borderwidth=0, command=pause)
 Pause.grid()
-Pause.place(x=240,y=453, height=34, width=48)
+Pause.place(x=240,y=450, height=40, width=40)
 
 
 def next_button():
@@ -349,16 +342,16 @@ def previous_button():
 	playlist.selection_set(previous_song, last=None)
 
 
+Previous = Button(root, image=previous_pick, borderwidth=0, command=previous_button)
+Previous.grid()
+Previous.place(x=80,y=450, height=40, width=40)
+
+
 
 def slide(x):
 	mixer.music.load(playlist.get(ACTIVE))
 	mixer.music.play(loops=0, start=int(my_slider.get()))
 
-
-
-Previous = Button(root, image=previous_pick, borderwidth=0, command=previous_button)
-Previous.grid()
-Previous.place(x=80,y=450, height=40, width=40)
 
 
 status_bar1 = Label(root, text='', bg='black', fg='white', bd=1, anchor=W)
@@ -376,8 +369,8 @@ my_slider.grid()
 my_slider.place(x=20, y=380, height=20)
 
 #current song
-current_song = Label(root, text='', fg='green', bg='yellow')
+current_song = Label(root, text='', bg='black', fg='white')
 current_song.grid()
-current_song.place(x=120,y=350, width=200, height=20)
+current_song.place(y=350, width=440, height=20)
 
 root.mainloop()
