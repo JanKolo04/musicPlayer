@@ -37,17 +37,6 @@ songtracks = os.listdir()
 
 for track in songtracks:
 	playlist.insert(END,track)
-
-
-def play():
-	mixer.init()
-	mixer.music.load(playlist.get(ACTIVE))
-	mixer.music.play(loops=0)
-
-
-Play = Button(root, image=play_pick, borderwidth=0, command=play)
-Play.grid()
-Play.place(x=160,y=353, height=34, width=48)
 ```
 
 
