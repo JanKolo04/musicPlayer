@@ -167,11 +167,6 @@ down_belt = Label(root, bg='black')
 down_belt.grid()
 down_belt.place(x=0, y=440, height=60, width=440)
 
-#line
-line = Canvas(root,width=440, height=3, background='white')
-line.grid()
-line.place(y=432)
-
 
 
 #function to play button
