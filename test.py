@@ -270,7 +270,7 @@ def play():
 	#update sliser posittion
 	#slider_posittion = int(song_lenght)
 	#my_slider.config(to=slider_posittion, value=0)
-
+	
 
 Play = Button(root, image=play_pick, borderwidth=0, command=play)
 Play.grid()
