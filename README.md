@@ -50,3 +50,6 @@ for track in songtracks:
 - [x] duraction and lenght song 
 - [x] add song slider
 - [x] design of current song label
+
+
+
